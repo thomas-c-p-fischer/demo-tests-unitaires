@@ -42,7 +42,7 @@ public class Maison {
 	}
 	
 	public int nbPieces() {
-		return pieces.length-1;
+		return pieces.length;
 	}
 
 	/** Retourne la superficie d'un étage
@@ -68,13 +68,15 @@ public class Maison {
 	public double superficieTypePiece(String typePiece) {
 		double superficie = 0;
 
-		for (int i = 1; i < pieces.length; i++) {
-			if (typePiece!=null && typePiece.equals(this.pieces[i].getType())) {
-				superficie = superficie + this.pieces[i].getSuperficie();
-			}
-		}
+	    for (int i = 0; i < pieces.length; i++) {
+	    	if ((typePiece == null && this.pieces[i].getType() == null) ||
+	                (typePiece != null && typePiece.equals(this.pieces[i].getType())) ||
+	                (typePiece == null && this.pieces[i].getType() != null)) {
+	                superficie += this.pieces[i].getSuperficie();
+            }
+        }
 
-		return superficie;
+	    return superficie;
 	}
 
 	/** Retourne la surface totale
